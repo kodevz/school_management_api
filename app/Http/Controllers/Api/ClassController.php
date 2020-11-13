@@ -16,7 +16,7 @@ class ClassController extends BaseController
      */
     public function index()
     {
-        //
+        return Classes::with('classType')->paginate(1);
     }
 
     /**
@@ -93,5 +93,5 @@ class ClassController extends BaseController
             DB::rollback();
             return $this->error('Class deletion failure');
         }
-    }
+    } 
 }

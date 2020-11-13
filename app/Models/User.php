@@ -47,4 +47,14 @@ class User extends Authenticatable
     {
         return $this->belongsToMany('App\Models\Roles', 'user_roles', 'user_id', 'role_id');
     }
+
+    public function staff()
+    {
+        return $this->belongsTo('App\Models\StaffMaster', 'id', 'user_id');
+    }
+
+    public function student()
+    {
+        return $this->belongsTo('App\Models\StudentMaster', 'id', 'user_id');
+    }
 }

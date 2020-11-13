@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use App\Traits\FailedRequestTrait;
 use Illuminate\Foundation\Http\FormRequest;
 
-class ClassRequest extends FormRequest
+class SectionsRequest extends FormRequest
 {
     use FailedRequestTrait;
 
@@ -26,17 +26,11 @@ class ClassRequest extends FormRequest
      */
     public function rules()
     {
-        $store = [
-            'name' => 'required|unique:classes,name',
-            'class_type_id' => 'required'
+        return [
+            'name' => 'required|string',
+            'class_id' => 'required',
+            'teacher_id' => 'sometimes|nullable|exists:staff_master,id',
         ];
-        $class_id = isset($this->class) ? $this->class->id : '';
-        $update =  [
-            'name' => 'required|unique:classes,name,'.$class_id,
-            'class_type_id' => 'required'
-        ];
-
-        return ($this->method() === 'POST') ? $store : $update;
     }
 
     /**
@@ -48,7 +42,8 @@ class ClassRequest extends FormRequest
     {
         return [
             'name' => 'Class Name',
-            'class_type_id' => 'Classtype id '
+            'class_id' => 'Class id ',
+            'teacher_id' => 'Teacher User Id'
         ];
     }
 
@@ -62,8 +57,7 @@ class ClassRequest extends FormRequest
         return [
             'name.required' => 'A :attribute is required',
             'name.unique' => 'A :attribute should be unique',
-            'class_type_id.required' => 'A :attribute is required'
+            'class_id.required' => 'A :attribute is required'
         ];
     }
-
 }
