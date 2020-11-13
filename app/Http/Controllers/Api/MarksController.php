@@ -41,6 +41,7 @@ class MarksController extends BaseController
                     unset($mark['mark_id']);
                     Marks::where('id', $markId)->update($mark);
                 } else {
+                    unset($mark['mark_id']);
                     Marks::insert($mark);
                 }
             }

@@ -6,7 +6,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 
-class RolesSeeder extends Seeder
+class ClassTypeSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,34 +15,40 @@ class RolesSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('roles')->truncate();
-        $this->createRoles();
+        DB::table('class_types')->truncate();
+        $this->createClassTypes();
     }
 
-    private function createRoles()
+    public function createClassTypes()
     {
-        $roles = [
+        $classTypes = [
             [
-                'name' => 'Super Admin',
+                'name' => 'Nursery',
+                'code' => 'Nur',
                 'created_at' => Carbon::now()
             ],
             [
-                'name' => 'Admin',
+                'name' => 'Primary',
+                'code' => 'PRI',
                 'created_at' => Carbon::now()
             ],
             [
-                'name' => 'Teacher',
+                'name' => 'Middle',
+                'code' => 'MID',
                 'created_at' => Carbon::now()
             ],
             [
-                'name' => 'Parent',
+                'name' => 'High',
+                'code' => 'HIGH',
                 'created_at' => Carbon::now()
             ],
             [
-                'name' => 'Student',
+                'name' => 'Secondary',
+                'code' => 'SEC',
                 'created_at' => Carbon::now()
             ]
         ];
-        DB::table('roles')->insert($roles);
+        DB::table('class_types')->insert($classTypes);
     }
+    
 }
